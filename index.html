@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sabina Bajracharya | QA Studio</title>
+    
+    <!-- Premium Fonts exactly as requested -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Outfit:wght@300;500;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- EXACT LILAC DREAMER PALETTE --- */
+        :root {
+            --lilac-1: #C8CEEE; 
+            --lilac-2: #E8DAF0; 
+            --lilac-3: #F3E4F5; 
+            --lilac-4: #FCDCE1; 
+            --lilac-5: #D8BEE5; 
+            --lilac-6: #A7BDE0; 
+
+            --bg-color: #F8F3FA; /* Very slightly brightened for a cleaner look */
+            
+            --text-main: #252336; 
+            --text-muted: #6E6A8A; 
+
+            /* Ultra-Premium Glassmorphism */
+            --glass-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.3) 100%);
+            --glass-border: rgba(255, 255, 255, 0.8);
+            --glass-shadow: 0 20px 40px rgba(167, 189, 224, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection {
+            background: var(--lilac-5);
+            color: var(--text-main);
+        }
+
+        /* --- FLUID AURORA BACKGROUND --- */
+        /* Replaces the clunky 3D canvas with a hyper-aesthetic, buttery smooth gradient blur */
+        .aurora-bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: -2;
+            overflow: hidden;
+            background: var(--bg-color);
+        }
+
+        .aurora-blob {
+            position: absolute;
+            filter: blur(120px);
+            opacity: 0.7;
+            border-radius: 50%;
+            animation: fluidMotion 25s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .blob-1 { top: -10%; left: -10%; width: 60vw; height: 60vw; background: var(--lilac-4); }
+        .blob-2 { bottom: -20%; right: -10%; width: 70vw; height: 70vw; background: var(--lilac-1); animation-delay: -5s; }
+        .blob-3 { top: 30%; left: 40%; width: 50vw; height: 50vw; background: var(--lilac-5); animation-delay: -10s; }
+
+        @keyframes fluidMotion {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(10vw, 15vh) scale(1.2); }
+            100% { transform: translate(-10vw, 5vh) scale(0.9); }
+        }
+
+        /* Ambient subtle grain overlay for a "matte" studio finish */
+        .noise {
+            position: fixed; inset: 0; z-index: -1;
+            background: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="n"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23n)" opacity="0.05"/%3E%3C/svg%3E');
+            pointer-events: none;
+        }
+
+        /* --- LAYOUT --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1, h2, h3 {
+            font-family: 'Outfit', sans-serif;
+            color: var(--text-main);
+        }
+
+        h1 {
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Highlight specific words nicely */
+        .text-highlight {
+            background: linear-gradient(120deg, var(--lilac-6), #8A9CDB);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 2.5rem;
+            letter-spacing: -0.03em;
+        }
+
+        .mono-label {
+            font-family: 'Space Mono', monospace;
+            color: #726B96;
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .mono-label::before {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 1px;
+            background: #726B96;
+        }
+
+        p.hero-text {
+            color: var(--text-muted);
+            font-size: 1.25rem;
+            max-width: 580px;
+            font-weight: 400;
+            line-height: 1.7;
+        }
+
+        /* --- REFINED BENTO GLASS UI --- */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-radius: 32px; /* Smoother, rounder corners */
+            padding: 3rem;
+            box-shadow: var(--glass-shadow);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px rgba(167, 189, 224, 0.25);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.4) 100%);
+        }
+
+        .span-12 { grid-column: span 12; }
+        .span-6 { grid-column: span 6; }
+
+        @media (max-width: 900px) {
+            .span-6 { grid-column: span 12; }
+            .glass-card { padding: 2rem; border-radius: 24px; }
+        }
+
+        /* --- ELEGANT SKILL TAGS --- */
+        .capabilities-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 2rem;
+        }
+
+        .skill-pill {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 1);
+            padding: 0.8rem 1.4rem;
+            border-radius: 12px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-main);
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .skill-pill:hover {
+            background: var(--text-main);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37, 35, 54, 0.1);
+        }
+
+        /* --- MISSIONS TYPOGRAPHY --- */
+        .mission-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-family: 'Space Mono';
+            margin-bottom: 2rem;
+        }
+        
+        .tag-blue { background: var(--lilac-6); color: white; }
+        .tag-pink { background: var(--lilac-4); color: var(--text-main); }
+
+        .mission-stat {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(0,0,0,0.06);
+            font-family: 'Outfit';
+            font-weight: 600;
+            color: var(--lilac-6);
+            font-size: 1.1rem;
+        }
+
+        /* --- BUTTON --- */
+        .btn {
+            background: var(--text-main);
+            color: white;
+            text-decoration: none;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 15px 30px rgba(37, 35, 54, 0.2);
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(37, 35, 54, 0.3);
+            background: #1a1826;
+        }
+
+        /* --- NAV --- */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            padding: 1.5rem 0; z-index: 100;
+            background: linear-gradient(to bottom, rgba(248, 243, 250, 0.9) 0%, rgba(248, 243, 250, 0) 100%);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .nav-inner {
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo { font-family: 'Outfit'; font-weight: 800; font-size: 1.25rem; letter-spacing: -0.02em; }
+        .nav-status { font-family: 'Space Mono'; font-size: 0.8rem; font-weight: 700; color: var(--text-muted); background: rgba(255,255,255,0.6); padding: 8px 16px; border-radius: 20px; border: 1px solid white;}
+        .pulse { display: inline-block; width: 8px; height: 8px; background: #10B981; border-radius: 50%; margin-right: 8px; box-shadow: 0 0 12px #10B981;}
+
+        /* --- SCROLL REVEAL --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+    </style>
+</head>
+<body>
+
+    <!-- Soft Ambient Aurora & Grain -->
+    <div class="aurora-bg">
+        <div class="aurora-blob blob-1"></div>
+        <div class="aurora-blob blob-2"></div>
+        <div class="aurora-blob blob-3"></div>
+    </div>
+    <div class="noise"></div>
+
+    <nav>
+        <div class="container nav-inner">
+            <div class="logo">S. BAJRACHARYA</div>
+            <div class="nav-status"><span class="pulse"></span>SYSTEM NOMINAL</div>
+        </div>
+    </nav>
+
+    <main class="container">
+        
+        <!-- INTRO -->
+        <section class="reveal">
+            <span class="mono-label">Quality Assurance Engineer</span>
+            <h1>I break software.<br>So your users <br><span class="text-highlight">never have to.</span></h1>
+            <p class="hero-text">From bulletproof web architecture to mobile game physics, I specialize in engineering resilience through cutting-edge test automation, robust API validation, and flawless deployments.</p>
+        </section>
+
+        <!-- CAPABILITIES -->
+        <section class="reveal">
+            <span class="mono-label">The Tech Ecosystem</span>
+            <h2>Orchestrating Quality</h2>
+            
+            <div class="bento-grid">
+                <div class="glass-card span-12">
+                    <p style="font-size: 1.25rem; color: var(--text-muted); max-width: 800px; line-height: 1.8;">
+                        Whether deploying <strong style="color: var(--text-main);">Selenium</strong> test frameworks or executing extreme-load tests in <strong style="color: var(--text-main);">K6</strong>, I approach quality from a strictly analytical, system-first methodology.
+                    </p>
+                    
+                    <div class="capabilities-grid">
+                        <div class="skill-pill">JAVA / SELENIUM</div>
+                        <div class="skill-pill">API: POSTMAN & JMETER</div>
+                        <div class="skill-pill">K6 LOAD TESTING</div>
+                        <div class="skill-pill">DATA SECURITY VALIDATION</div>
+                        <div class="skill-pill">AGILE & SCRUM</div>
+                        <div class="skill-pill">MOBILE PLATFORMS</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MISSIONS -->
+        <section class="reveal">
+            <span class="mono-label">Deployed Architecture</span>
+            <h2>Recent Missions</h2>
+            
+            <div class="bento-grid">
+                <!-- Mission 1: Guardware -->
+                <div class="glass-card span-6">
+                    <div class="mission-tag tag-blue">Data Security Sector</div>
+                    <h3 style="font-size: 2rem; margin-bottom: 1.2rem;">Project: Protect</h3>
+                    <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 1rem;">Operating at <strong style="color: var(--text-main);">GuardWare Australia</strong>, I designed the rollout for a comprehensive suite of data validation and security protocols.</p>
+                    <p style="font-size: 1.1rem; color: var(--text-muted);">Spearheaded rigorous performance analysis, complex API test mapping, and continuous integration pipeline safeguards.</p>
+                    
+                    <div class="mission-stat">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        Security Logic Verified
+                    </div>
+                </div>
+
+                <!-- Mission 2: Yarsa -->
+                <div class="glass-card span-6">
+                    <div class="mission-tag tag-pink">Web & Mobile Ecosystems</div>
+                    <h3 style="font-size: 2rem; margin-bottom: 1.2rem;">Yarsa Play Core</h3>
+                    <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 1rem;">Engineered sophisticated web-automated tests using Java/Selenium. When a system spans thousands of concurrent gamers, performance is critical.</p>
+                    <p style="font-size: 1.1rem; color: var(--text-muted);">Executed end-to-end K6 load operations and API load balancers using JMeter to ensure the ecosystem never shattered under scale.</p>
+                    
+                    <div class="mission-stat">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg>
+                        Stable High-Throughput
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA / ENGAGE -->
+        <section class="reveal" style="text-align: center; min-height: 80vh; align-items: center;">
+            <div class="glass-card" style="width: 100%; max-width: 800px; padding: 5rem 3rem;">
+                <span class="mono-label" style="justify-content: center; margin-bottom: 1.5rem;">Connect</span>
+                <h2 style="font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1.5rem;">Ready for launch?</h2>
+                <p style="font-size: 1.25rem; margin-bottom: 3rem; color: var(--text-muted); max-width: 500px; margin-left: auto; margin-right: auto;">Currently engineering flawless solutions based out of Kathmandu. Let’s talk about optimizing your next release.</p>
+                
+                <a href="mailto:sabinabajracharya42@gmail.com" class="btn">
+                    Initiate Comms
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Butter-smooth Scroll Observer
+        const elements = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Optional: remove unobserve if you want it to animate every time you scroll up and down
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        
+        elements.forEach(el => observer.observe(el));
+        setTimeout(() => { if(elements[0]) elements[0].classList.add('active'); }, 150);
+    </script>
+</body>
+</html>
